@@ -7,6 +7,8 @@ import styles from  '../styles/pages/Home.module.css'
 import Head from 'next/head'
 import { ChallengeBox } from "../components/ChallengeBox";
 
+import {GetServerSideProps} from 'next'
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -28,4 +30,18 @@ export default function Home() {
       </section>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (ctx ) => {
+
+
+  const {level, currentExperience,challengesCompleted} = ctx.req.cookies
+
+  return {
+    props: {
+      level,
+      currentExperience,
+      challengesCompleted
+    }
+  }
 }
